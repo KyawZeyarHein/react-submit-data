@@ -1,0 +1,38 @@
+body {
+  background-color: #eaf4ff;
+  font-family: Arial, sans-serif;
+}
+
+.form-box {
+  width: 260px;
+  margin: 30px auto;
+  background: white;
+  padding: 15px 20px;
+  border: 1px solid #ccc;
+}
+
+h3 {
+  margin: 10px 0 4px;
+  font-size: 14px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 4px;
+  font-size: 13px;
+}
+
+label {
+  font-size: 13px;
+}
+
+.section {
+  margin-bottom: 8px;
+}
+
+.output {
+  margin-top: 10px;
+  color: #b00000;
+  font-size: 13px;
+}
