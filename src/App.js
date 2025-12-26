@@ -1,13 +1,13 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
+import SubmitForm from "./components/SubmitForm";
 
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Register />} />
-      </Routes>
-    </HashRouter>
+    <Routes>
+      <Route path="/" element={<Register />} />
+      <Route path="/submit" element={<SubmitForm />} />
+    </Routes>
   );
 }
 
