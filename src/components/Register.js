@@ -2,111 +2,87 @@ import { useState } from "react";
 import "./Register.css";
 
 function Register() {
-  // choices from arrays
-  const genders = ["male", "female", "other"];
-  const hobbiesList = ["music", "movies", "plastic model"];
-  const roles = [
-    { value: "general staff", label: "General Staff" },
-    { value: "developer", label: "Developer" },
-    { value: "system analyst", label: "System Analyst" },
-  ];
+  const [submitted, setSubmitted] = useState(false);
 
-  // states
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [gender, setGender] = useState("");
-  const [hobbies, setHobbies] = useState([]);
   const [role, setRole] = useState("");
+  const [hobbies, setHobbies] = useState([]);
 
-  // checkbox handler
-  const onHobbyChange = (e) => {
-    const value = e.target.value;
-    const checked = e.target.checked;
+  const hobbyOptions = ["music", "movies", "plastic model"];
 
-    if (checked) {
-      setHobbies([...hobbies, value]);
-    } else {
-      setHobbies(hobbies.filter((h) => h !== value));
-    }
+  const toggleHobby = (value) => {
+    setHobbies((prev) =>
+      prev.includes(value)
+        ? prev.filter((h) => h !== value)
+        : [...prev, value]
+    );
   };
 
   return (
     <div className="form-box">
-      <h3>Username</h3>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      {!submitted ? (
+        <>
+          <h3>Register</h3>
 
-      <h3>Firstname</h3>
-      <input
-        type="text"
-        value={firstname}
-        onChange={(e) => setFirstname(e.target.value)}
-      />
+          <label>Username</label>
+          <input value={username} onChange={(e) => setUsername(e.target.value)} />
 
-      <h3>Lastname</h3>
-      <input
-        type="text"
-        value={lastname}
-        onChange={(e) => setLastname(e.target.value)}
-      />
+          <label>Firstname</label>
+          <input value={firstname} onChange={(e) => setFirstname(e.target.value)} />
 
-      <h3>Gender</h3>
-      <div className="section">
-        {genders.map((g) => (
-          <div key={g}>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value={g}
-                onChange={(e) => setGender(e.target.value)}
-              />{" "}
-              {g}
-            </label>
-          </div>
-        ))}
-      </div>
+          <label>Lastname</label>
+          <input value={lastname} onChange={(e) => setLastname(e.target.value)} />
 
-      <h3>Hobbies</h3>
-      <div className="section">
-        {hobbiesList.map((h) => (
-          <div key={h}>
-            <label>
-              <input
-                type="checkbox"
-                value={h}
-                onChange={onHobbyChange}
-              />{" "}
+          <h4>Gender</h4>
+          <label>
+            <input type="radio" name="gender" value="male" onChange={(e) => setGender(e.target.value)} />
+            Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female" onChange={(e) => setGender(e.target.value)} />
+            Female
+          </label>
+          <label>
+            <input type="radio" name="gender" value="other" onChange={(e) => setGender(e.target.value)} />
+            Other
+          </label>
+
+          <h4>Hobbies</h4>
+          {hobbyOptions.map((h) => (
+            <label key={h}>
+              <input type="checkbox" value={h} onChange={() => toggleHobby(h)} />
               {h}
             </label>
-          </div>
-        ))}
-      </div>
+          ))}
 
-      <h3>Role</h3>
-      <select onChange={(e) => setRole(e.target.value)}>
-        <option value="">Select role</option>
-        {roles.map((r) => (
-          <option key={r.value} value={r.value}>
-            {r.label}
-          </option>
-        ))}
-      </select>
+          <h4>Role</h4>
+          <select onChange={(e) => setRole(e.target.value)}>
+            <option value="">Select role</option>
+            <option value="general staff">General Staff</option>
+            <option value="developer">Developer</option>
+            <option value="system analyst">System Analyst</option>
+          </select>
 
-      <hr />
+          <br /><br />
+          <button onClick={() => setSubmitted(true)}>Submit</button>
+        </>
+      ) : (
+        <>
+          <h3>Submitted Data</h3>
+          <div>Username: {username}</div>
+          <div>Firstname: {firstname}</div>
+          <div>Lastname: {lastname}</div>
+          <div>Gender: {gender}</div>
+          <div>Hobbies: {hobbies.join(", ")}</div>
+          <div>Role: {role}</div>
 
-      <div className="output">
-        <div>Username: {username}</div>
-        <div>Firstname: {firstname}</div>
-        <div>Lastname: {lastname}</div>
-        <div>Gender: {gender}</div>
-        <div>Hobbies: {hobbies.join(", ")}</div>
-        <div>Role: {role}</div>
-      </div>
+          <br />
+          <button onClick={() => setSubmitted(false)}>Back</button>
+        </>
+      )}
     </div>
   );
 }
