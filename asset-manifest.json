@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-submit-data/static/css/main.0dea13cf.css",
-    "main.js": "/react-submit-data/static/js/main.30bf5e30.js",
+    "main.js": "/react-submit-data/static/js/main.010cc74d.js",
     "index.html": "/react-submit-data/index.html",
     "main.0dea13cf.css.map": "/react-submit-data/static/css/main.0dea13cf.css.map",
-    "main.30bf5e30.js.map": "/react-submit-data/static/js/main.30bf5e30.js.map"
+    "main.010cc74d.js.map": "/react-submit-data/static/js/main.010cc74d.js.map"
   },
   "entrypoints": [
     "static/css/main.0dea13cf.css",
-    "static/js/main.30bf5e30.js"
+    "static/js/main.010cc74d.js"
   ]
 }
