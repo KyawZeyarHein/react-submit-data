@@ -27,13 +27,18 @@ export function Items() {
         price: priceRef.current.value
       })
     });
+
     loadItems();
   }
 
   async function deleteItem(id) {
-    await fetch(`http://localhost:3000/api/item/${id}`, {
-      method: "DELETE"
-    });
+    await fetch(
+      `http://localhost:3000/api/item/${id}`,
+      {
+        method: "DELETE"
+      }
+    );
+
     loadItems();
   }
 
@@ -64,7 +69,10 @@ export function Items() {
               <td>{item.itemCategory}</td>
               <td>{item.itemPrice}</td>
               <td>
-                <Link to={`/edit/${item._id}`}>Edit</Link>
+                <Link to={`/edit/${item._id}`}>
+                  Edit
+                </Link>
+                {" "}
                 <button onClick={() => deleteItem(item._id)}>
                   Delete
                 </button>
@@ -91,9 +99,13 @@ export function Items() {
       </table>
 
       <br />
-      <button onClick={() => setPage(page - 1)}>Prev</button>
-      Page {page}
-      <button onClick={() => setPage(page + 1)}>Next</button>
+      <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+        Prev
+      </button>
+      {" Page "}{page}{" "}
+      <button onClick={() => setPage(page + 1)}>
+        Next
+      </button>
     </div>
   );
 }
